@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-{{ .Values.serviceName }}  # Tên hợp lệ (không có dấu gạch nối cuối)
+  labels:
+    app: {{ .Release.Name }}-{{ .Values.serviceName }}
+spec:
+  replicas: {{ .Values.replicas }}
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}-{{ .Values.serviceName }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}-{{ .Values.serviceName }}
+    spec:
+      containers:
+        - name: {{ .Values.serviceName }}
+          image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+          ports:
+            - containerPort: 80

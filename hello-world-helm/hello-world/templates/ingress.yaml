@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: hello-world-ingress
+  namespace: dev
+spec:
+  rules:
+  - host: tien.local  # Sử dụng tên miền đã thêm vào hosts
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: hello-world-hello-world  # Tên của service bạn muốn expose
+            port:
+              number: 80

@@ -1,0 +1,10 @@
+serviceName: hello-world  # Đảm bảo tên service không kết thúc bằng dấu gạch nối
+replicas: 2
+image:
+  repository: gcr.io/gke-demo-461401/hello-world
+  tag: v2
+  pullPolicy: IfNotPresent
+
+service:
+  type: NodePort
+  port: 3000
